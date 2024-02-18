@@ -1,11 +1,14 @@
 package ru.otus.java.basic.http.server;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class HttpRequest {
     private String rawRequest;
     private String uri;
+    private String body;
     private HttpMethod method;
     private Map<String, String> parameters;
 
@@ -17,9 +20,37 @@ public class HttpRequest {
         return method;
     }
 
+    public String getBody() {
+        return body;
+    }
+
+    public String getRoute() {
+        return method + " " + uri;
+    }
+
     public HttpRequest(String rawRequest) {
         this.rawRequest = rawRequest;
         parseRequestLine();
+
+        if (method == HttpMethod.POST) {
+            List<String> lines = rawRequest.lines().collect(Collectors.toList());
+            int splitLine = -1;
+            for (int i = 0; i < lines.size(); i++) {
+                if (lines.get(i).isEmpty()) {
+                    splitLine = i;
+                    break;
+                }
+            }
+            if (splitLine > -1) {
+                StringBuilder bodyBuilder = new StringBuilder();
+                for (int i = splitLine + 1; i < lines.size(); i++) {
+                    bodyBuilder.append(lines.get(i));
+                }
+                this.body = bodyBuilder.toString();
+            }
+        }
+
+        System.out.println(rawRequest);
     }
 
     private void parseRequestLine() {

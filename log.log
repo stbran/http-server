@@ -1,0 +1,9 @@
+15:51:13.820 [main] INFO  ru.otus.java.basic.http.server.Dispatcher - Инициализация диспетчера обработки запросов
+15:51:13.823 [main] INFO  ru.otus.java.basic.http.server.HttpServer - Сервер запущен на порту: 8189
+15:51:17.401 [pool-2-thread-1] INFO  ru.otus.java.basic.http.server.HttpServer - Запущен потокpool-2-thread-1
+15:51:17.403 [pool-2-thread-1] INFO  ru.otus.java.basic.http.server.HttpServer - Читаем входящее сообщение
+15:51:17.405 [pool-2-thread-1] INFO  ru.otus.java.basic.http.server.HttpRequest - Выполняется парсинг запроса
+15:51:17.407 [pool-2-thread-1] INFO  ru.otus.java.basic.http.server.HttpServer - Начало исполнения запроса
+15:51:17.409 [pool-2-thread-1] WARN  ru.otus.java.basic.http.server.Dispatcher - Необработанный запрос
+15:51:17.409 [pool-2-thread-1] INFO  ru.otus.java.basic.http.server.HttpServer - Запрос исполнен
+15:51:17.409 [pool-2-thread-1] INFO  ru.otus.java.basic.http.server.HttpServer - Закрываем сокет

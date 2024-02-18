@@ -20,9 +20,11 @@ public class HttpServer {
                 try (Socket socket = serverSocket.accept()) {
                     byte[] buffer = new byte[8192];
                     int n = socket.getInputStream().read(buffer);
-                    String rawRequest = new String(buffer, 0, n);
-                    HttpRequest httpRequest = new HttpRequest(rawRequest);
-                    dispatcher.execute(httpRequest, socket.getOutputStream());
+                    if (n > 0) {
+                        String rawRequest = new String(buffer, 0, n);
+                        HttpRequest httpRequest = new HttpRequest(rawRequest);
+                        dispatcher.execute(httpRequest, socket.getOutputStream());
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

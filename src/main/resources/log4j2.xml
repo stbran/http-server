@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" strict="true"
+               name="XMLConfigTest" packages="org.apache.logging.log4j.test">
+    <Filter type="ThresholdFilter" level="trace" />
+
+    <Appenders>
+        <Console name="STDOUT">
+            <Layout type="PatternLayout" pattern="%m %n" />
+<!--            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>-->
+        </Console>
+        <File name="File" fileName="log.log" append="false">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="STDOUT" />
+            <AppenderRef ref="File" />
+        </Root>
+
+    </Loggers>
+
+</Configuration>

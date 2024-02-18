@@ -9,7 +9,8 @@ import java.nio.charset.StandardCharsets;
 public class UnknownRequestProcessor implements RequestProcessor {
     @Override
     public void execute(HttpRequest httpRequest, OutputStream output) throws IOException {
-        String response = "HTTP/1.1 200 OK\r\nContent-Type: text/html;charset=utf-8\r\n\r\n<html><body><h1>Получен неизвестный запрос</h1></body></html>";
+        String jsonResponse = "{\"Error\": {\"errorCode\": 404, \"errorMessage\": \"Получен неизвестный запрос\"}}";
+        String response = "HTTP/1.1 404 Not found\r\nContent-Type: json/html\r\n\r\n" + jsonResponse;
         output.write(response.getBytes(StandardCharsets.UTF_8));
     }
 }
